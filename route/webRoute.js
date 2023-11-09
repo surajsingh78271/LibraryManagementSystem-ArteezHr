@@ -1,31 +1,19 @@
 // const mongoose = require("mongoose")
-const express = require("express")
-const bookControoler = require("../controllers/bookController")
-const userInfoController = require("../controllers/userInfoController")
-const userBookInfoController = require("../controllers/userBookInfoController")
-const userBookInfoModel = require("../dbSchema/userBookInfoSchema")
+const express = require("express");
+const bookControoler = require("../controllers/bookController");
+const userInfoController = require("../controllers/userInfoController");
+const userBookInfoController = require("../controllers/userBookInfoController");
+const userBookInfoModel = require("../dbSchema/userBookInfoSchema");
 
 
 const router = express.Router()
 
 router.get("/abc",(req,res)=>{
-    console.log("hello")
-    res.send({indicator:"route"})
+    console.log("hello");
+    res.send({indicator:"route"});
 })
 
-const bookBorrowAuthenMiddleware = async (req,res,next)=>{
-    const user =  await userBookInfoModel.findOne({email:req.body.email})
 
-    if(user){
-
-        next()
-
-    }else{
-        res.send({result:{
-            indicator : "This user not Borrow or not Return any book."
-        }})
-    }
-}
 
 
 
