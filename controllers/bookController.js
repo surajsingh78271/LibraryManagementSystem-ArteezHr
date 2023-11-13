@@ -37,6 +37,7 @@ class bookControoler{
         quantityAvl = quantityAvl.trim()
 
 
+        
         const doc = await new bookModel({
             id:id,
             title:title,

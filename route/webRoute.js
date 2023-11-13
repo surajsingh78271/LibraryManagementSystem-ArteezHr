@@ -42,8 +42,8 @@ router.post("/api/users/login",userInfoController.postLoginUserInfoController)
 
 
 router.get("/api/users/:userId/books",userBookInfoController.getUserBookController)
-router.get("/api/borrow/:bookId/:userId",authenMiddleware,userBookInfoController.postUserBorrowBookController)
-router.get("/api/return/:bookId/:userId",authenMiddleware,userBookInfoController.PostUserReturnBookController)
+router.post("/api/borrow/:bookId/:userId",authenMiddleware,userBookInfoController.postUserBorrowBookController)
+router.post("/api/return/:bookId/:userId",authenMiddleware,userBookInfoController.PostUserReturnBookController)
 
 
 
