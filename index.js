@@ -9,7 +9,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 const app = express();
 
-connectDB(process.env.DATABASE_URL);
+connectDB(process.env.DATABASE_LOCAL_URL);
 
 
 app.use(express.json());

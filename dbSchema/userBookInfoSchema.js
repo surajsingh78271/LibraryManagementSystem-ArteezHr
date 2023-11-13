@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 
 const userBookInfoSchema = mongoose.Schema({
-    username: String,
+    // username: String,
     email: String,
     borrowBook: Array
     // returnBook: Array

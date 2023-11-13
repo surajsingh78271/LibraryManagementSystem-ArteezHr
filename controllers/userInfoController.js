@@ -7,11 +7,16 @@ class userInfoController {
 
         
         if(req.body.email && req.body.password){
+            let email = req.body.email
+            email = email.trim()
+            let password = req.body.password
+            password = password.trim()
 
-            const user = userInfoModel.findOne({email:req.body.email})
+            const user = await userInfoModel.findOne({email:email})
 
             if(user){
-                if(user.password === req.body.password){
+
+                if(user.password == password){
                     res.send({result:{
                         indicator:"Login Successfully.",
                         statusBar:200,
@@ -38,11 +43,6 @@ class userInfoController {
             }})
 
         }
-        
-
-
-
-
     }
 
     static postRegisterUserInfoController = async (req,res)=>{
@@ -50,9 +50,15 @@ class userInfoController {
         const {username, email, password} = req.body
          if( username && email && password){
 
-            const user = userInfoModel.findOne({email:req.body.email})
+            let userId = req.body.email
+            userId = userId.trim()
+
+            const user = await userInfoModel.findOne({email:userId})
 
             if(!user){
+                username = username.trim();
+                email = email.trim()
+                password = password.trim()
                 const doc = await new userInfoModel({
                     username:username,
                     email:email,

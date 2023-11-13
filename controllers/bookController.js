@@ -5,7 +5,7 @@ const bookModel = require("../dbSchema/bookSchema")
 class bookControoler{
 
     static getBookController = async (req,res)=>{
-        const data = await bookModel.find()
+        const data = await bookModel.find({quantityAvl : {$gte:1}})
         res.send({result:{
             data:data,
             indicator:"All books are fetched Successfully."
@@ -13,18 +13,30 @@ class bookControoler{
     }
 
     static getBookByIdController = async (req,res)=>{
-        const data = await bookModel.find({id:req.body.id})
+        let id = req.params.id
+        // console.log(id)
+        id = id.trim()
+        // console.log(id)
+        const data = await bookModel.find({id:id})
         res.send({result:{
             data:data,
             indicator:"All books are fetched Successfully."
         }})
     }
 
-    static postBookControoler = async (req,res)=>{
+    static postBookController = async (req,res)=>{
 
         
-       const {id, title, author, ISBN} = req.body
+       const {id, title, author, ISBN, quantityAvl} = req.body
        if(id && title && author && ISBN && quantityAvl){
+
+        id = id.trim();
+        title = title.trim()
+        author = author.trim()
+        ISBN = ISBN.trim()
+        quantityAvl = quantityAvl.trim()
+
+
         const doc = await new bookModel({
             id:id,
             title:title,
